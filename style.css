@@ -1,47 +1,57 @@
+/* Global Styles */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
 :root {
   --text-primary: #1d1d1b;
   --text-seconday: #1d1d1b94;
 }
+
+/* Fonts */
 @font-face {
   font-family: Canopee;
   src: url("./fonts/Canopee.ttf");
 }
+
 @font-face {
   font-family: DomaineDispCondMedium;
   src: url("./fonts/DomaineDispCondMedium.ttf");
 }
+
 @font-face {
   font-family: Editorial-new;
   src: url("./fonts/EditorialNew-Light.ttf");
 }
+
 @font-face {
   font-family: Editorial-new-medium;
   src: url("./fonts/EditorialNew-medium.ttf");
 }
 
+/* Body Styles */
 html,
 body {
   min-height: 100%;
-  background-color: #c4bcb3;
   color: var(--text-seconday);
   font-family: Editorial-new;
   line-height: 1.6;
+  background-color: #c4bcb3;
 }
+
+/* Scrollbar Styles */
 ::-webkit-scrollbar {
   display: none;
 }
+
+/* Image and SVG Styles */
 img,
 svg {
   width: 100%;
   display: block;
 }
-
-/* Typography */
 
 /* Header Section */
 header {
@@ -52,11 +62,100 @@ header {
   padding: 3em 2em;
   border-bottom: 1px solid var(--text-seconday);
 }
+
+/* Navigation */
+ul {
+  display: flex;
+  gap: 1em;
+  list-style: none;
+  background-color: var(--text-primary);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: transform 0.3s ease-in-out;
+}
+nav li {
+  text-decoration: none;
+  font-size: 4rem;
+  font-family: canopee;
+  color: white;
+  position: relative;
+}
+nav li:hover::after {
+  content: "";
+  background-color: #fd8700;
+  height: 0.3rem;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  border-radius: 10px;
+  animation-name: slide-left;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in-out;
+}
+
+nav a {
+  text-decoration: none;
+  color: orange;
+}
+
+.hidden {
+  opacity: 0;
+}
+/* hover Animation for links */
+@keyframes slide-left {
+  from {
+    width: 0%;
+    transform: translateX(50%);
+  }
+  to {
+    width: 100%;
+    transform: translateX(0);
+  }
+}
+.menu-icon:hover {
+  cursor: pointer;
+}
+
+.close-btn svg {
+  width: 7rem;
+  stroke: white;
+  position: absolute;
+  top: 2rem;
+  right: 1rem;
+  padding: 0 0.3em;
+  font-family: canopee;
+}
+
+.close-btn svg path {
+  fill: #fec465;
+  transition: fill 0.2s ease;
+}
+
+.close-btn svg:hover path {
+  fill: orange;
+  cursor: pointer;
+}
+
+.close {
+  transform: translateX(100vw);
+}
+
+/* Logo Text Styles */
 .logo-text {
   font-size: 1.2rem;
   font-weight: 100;
   color: var(--text-primary);
 }
+
+/* Menu Icon Styles */
 .menu-icon {
   width: 1.5rem;
 }
@@ -68,15 +167,22 @@ header {
 .nav-img img {
   width: 12rem;
 }
+
 /* Posts Section */
 .post {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+  /* prettier-ignore */
+  grid-template-areas:
+    "post-1 post-2 post-3 " ;
   padding: 3em 2em;
   gap: 5em;
   align-items: center;
   justify-content: center;
 }
 
+/* Post Title Styles */
 .post-title {
   margin-bottom: 0.5em;
   font-weight: 900;
@@ -86,6 +192,7 @@ header {
   font-size: 1.5rem;
   font-family: DomaineDispCondMedium;
 }
+
 .post-title span {
   padding: 0em 0.2em;
   color: #c3bbb2;
@@ -96,10 +203,13 @@ header {
   font-size: 1.2rem;
 }
 
+/* Image Container Styles */
 .img-container {
   overflow: hidden;
   margin-bottom: 0.5em;
 }
+
+/* Post Image Styles */
 .post-img {
   border: 1px solid black;
   transition: transform 0.4s ease-in-out;
@@ -112,43 +222,51 @@ header {
   transform: scale(1.2);
 }
 
+/* Post Content Styles */
 .post p {
   width: 90%;
   font-size: 1.1rem;
   line-height: 1.4;
 }
 
+/* Post Heading and Paragraph Styles */
 .post h2,
 .post p {
   color: var(--text-primary);
 }
-.post-1,
-.post-3 {
-  width: 30%;
+
+/* Post Columns */
+.post-1 {
+  grid-area: post-1;
 }
 
-/* Seperate Styling for post-2 */
 .post-2 {
-  width: 27%;
   border-left: 1px solid var(--text-seconday);
   border-right: 1px solid var(--text-seconday);
-  align-self: stretch;
-  padding: 0 4em;
+  padding: 0 2em;
   font-family: Editorial-new-medium;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: center;
+  grid-area: post-2;
 }
 
+.post-3 {
+  grid-area: post-3;
+}
+
+/* Post-2 Title Styles */
 .post-2 .post-title {
   font-size: 3rem;
   font-weight: 900;
   letter-spacing: -1.5px;
   margin-top: 0.3em;
+  justify-content: center;
+  margin: 0 auto;
 }
+
+/* Post-2 Body Styles */
 .post-2 .post-body {
   font-family: Editorial-new;
-  font-size: 2.2rem;
+  font-size: 3.9vh;
   margin-bottom: 1em;
   text-align: center;
   line-height: 1.3;
@@ -163,16 +281,19 @@ header {
   margin: 0 0.3em 0.2em;
 }
 
+/* Post Tip Styles */
 .post-tip span {
   color: var(--text-primary);
 }
+
 .post-tip {
   font-weight: 100;
   color: var(--text-seconday);
 }
 
+/* Main Heading Styles */
 .main-heading {
-  font-size: 37rem;
+  font-size: 35vw;
   color: #c5beb4;
   font-family: Canopee;
   text-align: center;
@@ -184,10 +305,26 @@ header {
   font-weight: 100;
 }
 
-/* Layout */
+/* Page 1 Styles */
 .page-1 {
   height: 100vh;
   width: 100vw;
+}
+
+/* Media Query for medium Screens */
+@media screen and (max-width: 1000px) {
+  .post {
+    grid-template-columns: repeat(2, minmax(300px, 1fr));
+    grid-template-areas:
+      "post-1  post-2"
+      "post-3 post-3";
+    padding: 2em 4em;
+  }
+
+  .main-heading {
+    font-size: 10rem;
+    letter-spacing: 1px;
+  }
 }
 
 @media screen and (max-width: 700px) {
@@ -196,18 +333,19 @@ header {
     width: fit-content;
   }
   .nav-img img {
-    width: 9rem;
+    width: 9em;
+  }
+  .logo-text {
+    font-size: 1rem;
   }
   .post {
-    display: flex;
-    flex-direction: column;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-areas:
+      "post-1 post-1 post-1"
+      "post-2 post-2 post-2"
+      "post-3 post-3 post-3";
   }
-  .post-1,
-  .post-2,
-  .post-3 {
-    width: 100%;
-    height: 100%;
-  }
+
   .main-heading {
     font-size: 10rem;
     letter-spacing: 1px;
