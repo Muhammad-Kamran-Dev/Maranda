@@ -1,3 +1,9 @@
+// Locomotive Scroll
+const scroll = new LocomotiveScroll({
+  el: document.querySelector(".main"),
+  smooth: true
+});
+
 // Navigation Code
 const menu = document.querySelector(".menu-icon");
 const closeBtn = document.querySelector(".close-btn");
